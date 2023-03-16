@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             SidePanel = new Panel();
+            Btn_Course = new FontAwesome.Sharp.IconButton();
             label1 = new Label();
             Btn_Users = new FontAwesome.Sharp.IconButton();
             Btn_Dept = new FontAwesome.Sharp.IconButton();
@@ -43,14 +44,36 @@
             // 
             SidePanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             SidePanel.BackColor = Color.FromArgb(51, 52, 78);
+            SidePanel.Controls.Add(Btn_Course);
             SidePanel.Controls.Add(label1);
             SidePanel.Controls.Add(Btn_Users);
             SidePanel.Controls.Add(Btn_Dept);
             SidePanel.Location = new Point(-3, -3);
             SidePanel.Name = "SidePanel";
             SidePanel.Padding = new Padding(10);
-            SidePanel.Size = new Size(290, 593);
+            SidePanel.Size = new Size(199, 593);
             SidePanel.TabIndex = 0;
+            // 
+            // Btn_Course
+            // 
+            Btn_Course.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            Btn_Course.BackColor = Color.FromArgb(51, 52, 78);
+            Btn_Course.FlatAppearance.BorderSize = 0;
+            Btn_Course.FlatStyle = FlatStyle.Flat;
+            Btn_Course.Font = new Font("Cairo", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            Btn_Course.ForeColor = SystemColors.ButtonHighlight;
+            Btn_Course.IconChar = FontAwesome.Sharp.IconChar.Book;
+            Btn_Course.IconColor = Color.White;
+            Btn_Course.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Btn_Course.ImageAlign = ContentAlignment.MiddleLeft;
+            Btn_Course.Location = new Point(13, 354);
+            Btn_Course.Name = "Btn_Course";
+            Btn_Course.Size = new Size(173, 69);
+            Btn_Course.TabIndex = 4;
+            Btn_Course.Text = "Course";
+            Btn_Course.TextImageRelation = TextImageRelation.ImageBeforeText;
+            Btn_Course.UseVisualStyleBackColor = false;
+            Btn_Course.Click += Btn_Course_Click;
             // 
             // label1
             // 
@@ -58,7 +81,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Cairo SemiBold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(53, 36);
+            label1.Location = new Point(7, 36);
             label1.Name = "label1";
             label1.Size = new Size(186, 64);
             label1.TabIndex = 3;
@@ -77,9 +100,9 @@
             Btn_Users.IconColor = Color.White;
             Btn_Users.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Btn_Users.ImageAlign = ContentAlignment.MiddleLeft;
-            Btn_Users.Location = new Point(13, 326);
+            Btn_Users.Location = new Point(13, 279);
             Btn_Users.Name = "Btn_Users";
-            Btn_Users.Size = new Size(267, 69);
+            Btn_Users.Size = new Size(173, 69);
             Btn_Users.TabIndex = 1;
             Btn_Users.Text = "Users";
             Btn_Users.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -98,9 +121,9 @@
             Btn_Dept.IconColor = Color.White;
             Btn_Dept.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Btn_Dept.ImageAlign = ContentAlignment.MiddleLeft;
-            Btn_Dept.Location = new Point(13, 231);
+            Btn_Dept.Location = new Point(13, 195);
             Btn_Dept.Name = "Btn_Dept";
-            Btn_Dept.Size = new Size(267, 69);
+            Btn_Dept.Size = new Size(173, 69);
             Btn_Dept.TabIndex = 0;
             Btn_Dept.Text = "Departments";
             Btn_Dept.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -112,9 +135,9 @@
             HeaderPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             HeaderPanel.BackColor = Color.FromArgb(0, 134, 138);
             HeaderPanel.Controls.Add(HeaderLabel);
-            HeaderPanel.Location = new Point(284, -3);
+            HeaderPanel.Location = new Point(196, -3);
             HeaderPanel.Name = "HeaderPanel";
-            HeaderPanel.Size = new Size(662, 100);
+            HeaderPanel.Size = new Size(750, 100);
             HeaderPanel.TabIndex = 2;
             // 
             // HeaderLabel
@@ -123,7 +146,7 @@
             HeaderLabel.AutoSize = true;
             HeaderLabel.Font = new Font("Cairo", 18F, FontStyle.Bold, GraphicsUnit.Point);
             HeaderLabel.ForeColor = SystemColors.ButtonHighlight;
-            HeaderLabel.Location = new Point(289, 22);
+            HeaderLabel.Location = new Point(333, 22);
             HeaderLabel.Name = "HeaderLabel";
             HeaderLabel.Size = new Size(101, 56);
             HeaderLabel.TabIndex = 0;
@@ -134,9 +157,9 @@
             // 
             DesktopPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DesktopPanel.BackColor = SystemColors.ButtonHighlight;
-            DesktopPanel.Location = new Point(284, 94);
+            DesktopPanel.Location = new Point(196, 94);
             DesktopPanel.Name = "DesktopPanel";
-            DesktopPanel.Size = new Size(662, 496);
+            DesktopPanel.Size = new Size(750, 496);
             DesktopPanel.TabIndex = 3;
             // 
             // Admin
@@ -166,5 +189,6 @@
         private Panel HeaderPanel;
         private Label HeaderLabel;
         private Panel DesktopPanel;
+        private FontAwesome.Sharp.IconButton Btn_Course;
     }
 }

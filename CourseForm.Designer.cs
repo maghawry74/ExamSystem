@@ -1,6 +1,6 @@
 ﻿namespace ExamSystem
 {
-    partial class UsersForm
+    partial class CourseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            UserCRUDPanel = new Panel();
+            panel1 = new Panel();
             Btn_Delete = new FontAwesome.Sharp.IconButton();
             Btn_Edit = new FontAwesome.Sharp.IconButton();
             Btn_AddNew = new FontAwesome.Sharp.IconButton();
-            DGV_Users = new DataGridView();
-            UserCRUDPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DGV_Users).BeginInit();
+            DGV_Course = new DataGridView();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DGV_Course).BeginInit();
             SuspendLayout();
             // 
-            // UserCRUDPanel
+            // panel1
             // 
-            UserCRUDPanel.BackColor = SystemColors.ActiveCaption;
-            UserCRUDPanel.Controls.Add(Btn_Delete);
-            UserCRUDPanel.Controls.Add(Btn_Edit);
-            UserCRUDPanel.Controls.Add(Btn_AddNew);
-            UserCRUDPanel.Dock = DockStyle.Right;
-            UserCRUDPanel.Location = new Point(632, 0);
-            UserCRUDPanel.Name = "UserCRUDPanel";
-            UserCRUDPanel.Size = new Size(168, 450);
-            UserCRUDPanel.TabIndex = 3;
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(Btn_Delete);
+            panel1.Controls.Add(Btn_Edit);
+            panel1.Controls.Add(Btn_AddNew);
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(632, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(168, 450);
+            panel1.TabIndex = 3;
             // 
             // Btn_Delete
             // 
@@ -106,43 +106,42 @@
             Btn_AddNew.UseVisualStyleBackColor = false;
             Btn_AddNew.Click += Btn_AddNew_Click;
             // 
-            // DGV_Users
+            // DGV_Course
             // 
-            DGV_Users.AllowUserToAddRows = false;
-            DGV_Users.AllowUserToDeleteRows = false;
-            DGV_Users.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DGV_Users.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGV_Users.Location = new Point(0, 0);
-            DGV_Users.MultiSelect = false;
-            DGV_Users.Name = "DGV_Users";
-            DGV_Users.ReadOnly = true;
-            DGV_Users.RowHeadersWidth = 51;
-            DGV_Users.RowTemplate.Height = 29;
-            DGV_Users.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            DGV_Users.Size = new Size(634, 450);
-            DGV_Users.TabIndex = 2;
+            DGV_Course.AllowUserToAddRows = false;
+            DGV_Course.AllowUserToDeleteRows = false;
+            DGV_Course.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DGV_Course.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGV_Course.Location = new Point(0, 0);
+            DGV_Course.MultiSelect = false;
+            DGV_Course.Name = "DGV_Course";
+            DGV_Course.ReadOnly = true;
+            DGV_Course.RowHeadersWidth = 51;
+            DGV_Course.RowTemplate.Height = 29;
+            DGV_Course.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DGV_Course.Size = new Size(658, 450);
+            DGV_Course.TabIndex = 2;
             // 
-            // UsersForm
+            // CourseForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
             ClientSize = new Size(800, 450);
-            Controls.Add(UserCRUDPanel);
-            Controls.Add(DGV_Users);
-            Name = "UsersForm";
-            Text = "UsersForm";
-            UserCRUDPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)DGV_Users).EndInit();
+            Controls.Add(panel1);
+            Controls.Add(DGV_Course);
+            Name = "CourseForm";
+            Text = "CourseForm";
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DGV_Course).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel UserCRUDPanel;
+        private Panel panel1;
         private FontAwesome.Sharp.IconButton Btn_Delete;
         private FontAwesome.Sharp.IconButton Btn_Edit;
         private FontAwesome.Sharp.IconButton Btn_AddNew;
-        private DataGridView DGV_Users;
+        private DataGridView DGV_Course;
     }
 }

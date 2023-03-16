@@ -59,9 +59,9 @@
             panel1.Controls.Add(Btn_Edit);
             panel1.Controls.Add(Btn_AddNew);
             panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(654, 0);
+            panel1.Location = new Point(632, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(146, 450);
+            panel1.Size = new Size(168, 450);
             panel1.TabIndex = 1;
             // 
             // Btn_Delete
@@ -74,7 +74,7 @@
             Btn_Delete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Btn_Delete.IconSize = 32;
             Btn_Delete.ImageAlign = ContentAlignment.MiddleLeft;
-            Btn_Delete.Location = new Point(0, 274);
+            Btn_Delete.Location = new Point(11, 128);
             Btn_Delete.Name = "Btn_Delete";
             Btn_Delete.Size = new Size(146, 58);
             Btn_Delete.TabIndex = 2;
@@ -93,7 +93,7 @@
             Btn_Edit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Btn_Edit.IconSize = 32;
             Btn_Edit.ImageAlign = ContentAlignment.MiddleLeft;
-            Btn_Edit.Location = new Point(0, 210);
+            Btn_Edit.Location = new Point(11, 64);
             Btn_Edit.Name = "Btn_Edit";
             Btn_Edit.Size = new Size(143, 58);
             Btn_Edit.TabIndex = 1;
@@ -112,7 +112,7 @@
             Btn_AddNew.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Btn_AddNew.IconSize = 32;
             Btn_AddNew.ImageAlign = ContentAlignment.MiddleLeft;
-            Btn_AddNew.Location = new Point(0, 146);
+            Btn_AddNew.Location = new Point(11, 0);
             Btn_AddNew.Name = "Btn_AddNew";
             Btn_AddNew.Size = new Size(143, 58);
             Btn_AddNew.TabIndex = 0;

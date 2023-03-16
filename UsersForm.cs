@@ -41,20 +41,18 @@ namespace ExamSystem
         private void Btn_Delete_Click(object sender, EventArgs e)
         {
             string UserName = DGV_Users.SelectedRows[0].Cells[1].Value.ToString() ?? "Na";
-            string USerId = DGV_Users.SelectedRows[0].Cells[0].Value.ToString() ?? "Na";
+            string UserId = DGV_Users.SelectedRows[0].Cells[0].Value.ToString() ?? "Na";
             if (MessageBox.Show($"Are You Sure To Delete USer {UserName}", "Alert", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                Db.Users.Remove(new User()
-                {
-                    Ssn = USerId,
-                });
+                var DeletedUser = Db.Users.FirstOrDefault(user => user.Ssn == UserId);
+                Db.Users.Remove(DeletedUser);
                 Db.SaveChanges();
                 LoadAllUsers();
             }
         }
         void LoadAllUsers()
         {
-            var list = Db.Users.Include(user=>user.Department).Select(user => new
+            var list = Db.Users.Include(user => user.Department).Select(user => new
             {
                 user.Ssn,
                 Name = $"{user.FirstName} {user.LastName}",

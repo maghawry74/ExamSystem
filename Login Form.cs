@@ -29,7 +29,26 @@ namespace ExamSystem
                 }
                 else
                 {
-                    MessageBox.Show($"Welcome {LoginResult.FirstName}");
+                    switch (LoginResult.Role)
+                    {
+                        case "Admin":
+                            Admin newAdmin = new Admin();
+                            this.Hide();
+                            newAdmin.ShowDialog();
+                            this.Show();
+                            break;
+                        case "Ins":
+                            InstructorForm newInstructor = new InstructorForm(LoginResult);
+                            this.Hide();
+                            newInstructor.ShowDialog();
+                            this.Show();
+                            break;
+                        default:
+                            this.Hide();
+                            new StudentWelcome(LoginResult).ShowDialog();
+                            this.Show();
+                            break;
+                    }
                 }
             }
         }
@@ -53,6 +72,14 @@ namespace ExamSystem
             Txt_SSN.BackColor = SystemColors.Control;
             Txt_Password.BackColor = Color.White;
             PasswordPanel.BackColor = Color.White;
+        }
+
+        private void panel2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                Btn_Login_Click(sender, e);
+            }
         }
     }
 }

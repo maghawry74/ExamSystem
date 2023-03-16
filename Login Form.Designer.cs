@@ -60,7 +60,7 @@
             Btn_Login.Location = new Point(28, 341);
             Btn_Login.Name = "Btn_Login";
             Btn_Login.Size = new Size(152, 60);
-            Btn_Login.TabIndex = 0;
+            Btn_Login.TabIndex = 3;
             Btn_Login.Text = "Login";
             Btn_Login.UseVisualStyleBackColor = false;
             Btn_Login.Click += Btn_Login_Click;
@@ -137,6 +137,7 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(550, 517);
             panel2.TabIndex = 5;
+            panel2.PreviewKeyDown += panel2_PreviewKeyDown;
             // 
             // PasswordPanel
             // 

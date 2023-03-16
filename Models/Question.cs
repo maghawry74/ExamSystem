@@ -21,5 +21,7 @@ public partial class Question
 
     public virtual Course? Course { get; set; }
 
+    public virtual ICollection<StudentExamAnswer> StudentExamAnswers { get; } = new List<StudentExamAnswer>();
+
     public virtual ICollection<Exam> Exams { get; } = new List<Exam>();
 }

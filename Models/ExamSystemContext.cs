@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExamSystem.Models;
 
@@ -18,6 +19,8 @@ public partial class ExamSystemContext : DbContext
 
     public virtual DbSet<Course> Courses { get; set; }
 
+    public virtual DbSet<CourseToic> CourseToics { get; set; }
+
     public virtual DbSet<Department> Departments { get; set; }
 
     public virtual DbSet<Exam> Exams { get; set; }
@@ -26,10 +29,13 @@ public partial class ExamSystemContext : DbContext
 
     public virtual DbSet<StudentExam> StudentExams { get; set; }
 
+    public virtual DbSet<StudentExamAnswer> StudentExamAnswers { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["ExamSystemDb"].ConnectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=.;Database=ExamSystem;Trusted_Connection=True;encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -50,6 +56,22 @@ public partial class ExamSystemContext : DbContext
 
         modelBuilder.Entity<Course>(entity =>
         {
+            entity.InsertUsingStoredProcedure("Course_Insert", sp =>
+            {
+                sp.HasParameter(crs => crs.CourseName);
+                sp.HasParameter(crs => crs.Duration);
+                sp.HasParameter(crs => crs.CourseId,para=>para.IsOutput());
+            });
+            entity.UpdateUsingStoredProcedure("Course_Update", sp =>
+            {
+                sp.HasOriginalValueParameter(crs => crs.CourseId);
+                sp.HasParameter(crs => crs.Duration);
+                sp.HasParameter(crs => crs.CourseName);
+            });
+            entity.DeleteUsingStoredProcedure("Course_Delete", sp =>
+            {
+                sp.HasOriginalValueParameter(crs=>crs.CourseId);
+            });
             entity.HasKey(e => e.CourseId).HasName("PK__Course__C92D7187959CD6B2");
 
             entity.ToTable("Course");
@@ -122,8 +144,26 @@ public partial class ExamSystemContext : DbContext
                             .HasColumnName("StudentID");
                     });
         });
+
+        modelBuilder.Entity<CourseToic>(entity =>
+        {
+            entity.HasKey(e => e.TopicId).HasName("PK__CourseTo__022E0F5D1A05C68B");
+
+            entity.ToTable("CourseToic");
+
+            entity.Property(e => e.TopicId).ValueGeneratedNever();
+            entity.Property(e => e.TopicName)
+                .HasMaxLength(40)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Course).WithMany(p => p.CourseToics)
+                .HasForeignKey(d => d.CourseId)
+                .HasConstraintName("FK__CourseToi__Cours__1DB06A4F");
+        });
+
         modelBuilder.Entity<Department>(entity =>
         {
+
             entity.InsertUsingStoredProcedure("Department_Insert", sp =>
             {
                 sp.HasParameter(dept => dept.DepartmentName);
@@ -215,6 +255,36 @@ public partial class ExamSystemContext : DbContext
                 .HasConstraintName("FK__StudentEx__Stude__4D94879B");
         });
 
+        modelBuilder.Entity<StudentExamAnswer>(entity =>
+        {
+            entity.HasKey(e => new { e.ExamId, e.StudentId, e.QuestionId }).HasName("PK");
+
+            entity.ToTable("StudentExamAnswer");
+
+            entity.Property(e => e.StudentId)
+                .HasMaxLength(14)
+                .IsUnicode(false)
+                .IsFixedLength();
+            entity.Property(e => e.Answer)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Exam).WithMany(p => p.StudentExamAnswers)
+                .HasForeignKey(d => d.ExamId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__StudentEx__ExamI__18EBB532");
+
+            entity.HasOne(d => d.Question).WithMany(p => p.StudentExamAnswers)
+                .HasForeignKey(d => d.QuestionId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__StudentEx__Quest__1AD3FDA4");
+
+            entity.HasOne(d => d.Student).WithMany(p => p.StudentExamAnswers)
+                .HasForeignKey(d => d.StudentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__StudentEx__Stude__19DFD96B");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.InsertUsingStoredProcedure("User_Insert", sp =>
@@ -241,6 +311,7 @@ public partial class ExamSystemContext : DbContext
             {
                 sp.HasOriginalValueParameter(User => User.Ssn);
             });
+
             entity.HasKey(e => e.Ssn).HasName("PK__Users__CA1E8E3DE84BF71F");
 
             entity.Property(e => e.Ssn)
@@ -251,7 +322,7 @@ public partial class ExamSystemContext : DbContext
             entity.Property(e => e.FirstName).HasMaxLength(30);
             entity.Property(e => e.LastName).HasMaxLength(30);
             entity.Property(e => e.Password).HasMaxLength(20);
-            entity.Property(e => e.Role).HasMaxLength(3);
+            entity.Property(e => e.Role).HasMaxLength(5);
 
             entity.HasOne(d => d.Department).WithMany(p => p.Users)
                 .HasForeignKey(d => d.DepartmentId)

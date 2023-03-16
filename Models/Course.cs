@@ -11,6 +11,8 @@ public partial class Course
 
     public string? CourseName { get; set; }
 
+    public virtual ICollection<CourseToic> CourseToics { get; } = new List<CourseToic>();
+
     public virtual ICollection<Exam> Exams { get; } = new List<Exam>();
 
     public virtual ICollection<Question> Questions { get; } = new List<Question>();

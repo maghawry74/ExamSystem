@@ -1,4 +1,7 @@
-﻿namespace ExamSystem.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace ExamSystem.Models;
 
 public partial class Department
 {
@@ -9,8 +12,4 @@ public partial class Department
     public virtual ICollection<User> Users { get; } = new List<User>();
 
     public virtual ICollection<Course> Courses { get; } = new List<Course>();
-    public override string ToString()
-    {
-        return this.DepartmentName ?? "NA";
-    }
 }
