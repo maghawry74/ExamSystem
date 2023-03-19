@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ExamSystem.Models;
 
-public partial class Course
+public partial class Course: IEqualityComparer<Course>
 {
     public int CourseId { get; set; }
 
@@ -22,4 +24,14 @@ public partial class Course
     public virtual ICollection<User> Instructors { get; } = new List<User>();
 
     public virtual ICollection<User> Students { get; } = new List<User>();
+
+    public bool Equals(Course? x, Course? y)
+    {
+        return x?.CourseId == y?.CourseId;
+    }
+
+    public int GetHashCode([DisallowNull] Course obj)
+    {
+        return obj.CourseId;
+    }
 }

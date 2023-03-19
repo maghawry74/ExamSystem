@@ -14,42 +14,37 @@ namespace ExamSystem
 {
     public partial class ExamForm : Form
     {
+        ExamSystem.Models.User user;
         ExamSystemContext Db = new ExamSystemContext();
-        public ExamForm()
+        public ExamForm(User _user)
         {
             InitializeComponent();
-            CB_Course.DataSource = Db.Courses.Include(crs => crs.Questions).ToList();
-            CB_Course.DisplayMember = "CourseName";
-            CB_Course.ValueMember = "CourseId";
+            DGV_Exams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.user = Db.Users.Include(user => user.Courses).FirstOrDefault(user => user.Ssn == _user.Ssn);
+            LoadAllExams();
         }
-
-        private void Btn_Cancel_Click(object sender, EventArgs e)
+        private void Btn_AddNew_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ExamDetails Exam = new ExamDetails(user.Courses.ToList());
+            Exam.ShowDialog();
+            LoadAllExams();
         }
-
-        private void Btn_Save_Click(object sender, EventArgs e)
+        void LoadAllExams()
         {
-            if (MCQNum.Value == 0 && TFNum.Value == 0)
+            var ExamList = Db.Exams.Include(E => E.Course).ToList();
+            DGV_Exams.DataSource = ExamList.Where(E => user.Courses.Contains(E.Course))
+                                           .Select(E => new { E.ExamId, E.Mark, E.Course.CourseName })
+                                           .ToList();
+        }
+        private void Btn_Delete_Click(object sender, EventArgs e)
+        {
+            if (DGV_Exams.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Please Select Number Of Questions");
-            }
-            else
-            {
-                int NumMCQ = (int)MCQNum.Value;
-                int NumTF = (int)TFNum.Value;
-                int CrsID = ((Course)CB_Course.SelectedItem).CourseId;
-                Db.Database.ExecuteSql($"GenerateExam {CrsID}, {NumMCQ}, {NumTF}");
+                int Exam_Id = int.Parse(DGV_Exams.SelectedRows[0].Cells[0].Value.ToString());
+                Db.Exams.Remove(new Exam() { ExamId = Exam_Id });
                 Db.SaveChanges();
-                this.Close();
+                LoadAllExams();
             }
-        }
-
-        private void CB_Course_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Course SelectedCrs = (Course)CB_Course.SelectedItem;
-            MCQNum.Maximum = SelectedCrs.Questions.Count(q => q.Type == "MCQ");
-            TFNum.Maximum = SelectedCrs.Questions.Count(q => q.Type == "TF");
         }
     }
 }

@@ -60,7 +60,7 @@
             Btn_Login.Location = new Point(28, 341);
             Btn_Login.Name = "Btn_Login";
             Btn_Login.Size = new Size(152, 60);
-            Btn_Login.TabIndex = 3;
+            Btn_Login.TabIndex = 2;
             Btn_Login.Text = "Login";
             Btn_Login.UseVisualStyleBackColor = false;
             Btn_Login.Click += Btn_Login_Click;
@@ -69,24 +69,24 @@
             // 
             Txt_SSN.BackColor = SystemColors.Control;
             Txt_SSN.BorderStyle = BorderStyle.None;
-            Txt_SSN.Font = new Font("Cairo", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Txt_SSN.Location = new Point(49, 3);
+            Txt_SSN.Font = new Font("Cairo", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            Txt_SSN.Location = new Point(52, 0);
             Txt_SSN.Name = "Txt_SSN";
-            Txt_SSN.Size = new Size(391, 38);
-            Txt_SSN.TabIndex = 1;
+            Txt_SSN.Size = new Size(391, 47);
+            Txt_SSN.TabIndex = 0;
             Txt_SSN.Enter += Txt_SSN_Enter;
             // 
             // Txt_Password
             // 
             Txt_Password.BackColor = SystemColors.Control;
             Txt_Password.BorderStyle = BorderStyle.None;
-            Txt_Password.Font = new Font("Cairo", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Txt_Password.Location = new Point(49, 2);
+            Txt_Password.Font = new Font("Cairo", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point);
+            Txt_Password.Location = new Point(52, -1);
             Txt_Password.MinimumSize = new Size(0, 10);
             Txt_Password.Name = "Txt_Password";
             Txt_Password.PasswordChar = '•';
-            Txt_Password.Size = new Size(391, 38);
-            Txt_Password.TabIndex = 2;
+            Txt_Password.Size = new Size(391, 44);
+            Txt_Password.TabIndex = 1;
             Txt_Password.Enter += Txt_Password_Enter;
             // 
             // panel1

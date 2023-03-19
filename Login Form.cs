@@ -8,6 +8,7 @@ namespace ExamSystem
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            Txt_SSN_Enter(null, null);
         }
 
 
@@ -58,7 +59,7 @@ namespace ExamSystem
             this.Close();
         }
 
-        private void Txt_SSN_Enter(object sender, EventArgs e)
+        private void Txt_SSN_Enter(object? sender, EventArgs? e)
         {
             PasswordPanel.BackColor = SystemColors.Control;
             Txt_Password.BackColor = SystemColors.Control;
@@ -76,7 +77,7 @@ namespace ExamSystem
 
         private void panel2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 Btn_Login_Click(sender, e);
             }

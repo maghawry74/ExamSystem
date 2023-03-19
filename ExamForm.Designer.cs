@@ -28,141 +28,98 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label3 = new Label();
-            Btn_Cancel = new Button();
-            Btn_Save = new Button();
-            label1 = new Label();
-            MCQNum = new NumericUpDown();
-            TFNum = new NumericUpDown();
-            CB_Course = new ComboBox();
-            label4 = new Label();
-            ((System.ComponentModel.ISupportInitialize)MCQNum).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)TFNum).BeginInit();
+            panel4 = new Panel();
+            Btn_Delete = new FontAwesome.Sharp.IconButton();
+            Btn_AddNew = new FontAwesome.Sharp.IconButton();
+            DGV_Exams = new DataGridView();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DGV_Exams).BeginInit();
             SuspendLayout();
             // 
-            // label3
+            // panel4
             // 
-            label3.Anchor = AnchorStyles.None;
-            label3.AutoSize = true;
-            label3.Font = new Font("Cairo", 13.7999992F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(223, 165);
-            label3.Name = "label3";
-            label3.Size = new Size(151, 43);
-            label3.TabIndex = 20;
-            label3.Text = "#TF Question";
+            panel4.BackColor = SystemColors.ActiveCaption;
+            panel4.Controls.Add(Btn_Delete);
+            panel4.Controls.Add(Btn_AddNew);
+            panel4.Dock = DockStyle.Right;
+            panel4.Location = new Point(620, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(180, 450);
+            panel4.TabIndex = 5;
             // 
-            // Btn_Cancel
+            // Btn_Delete
             // 
-            Btn_Cancel.Anchor = AnchorStyles.None;
-            Btn_Cancel.BackColor = Color.IndianRed;
-            Btn_Cancel.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            Btn_Cancel.ForeColor = SystemColors.ButtonHighlight;
-            Btn_Cancel.Location = new Point(404, 401);
-            Btn_Cancel.Name = "Btn_Cancel";
-            Btn_Cancel.Size = new Size(109, 45);
-            Btn_Cancel.TabIndex = 19;
-            Btn_Cancel.Text = "Cancel";
-            Btn_Cancel.UseVisualStyleBackColor = false;
-            Btn_Cancel.Click += Btn_Cancel_Click;
+            Btn_Delete.Anchor = AnchorStyles.Top;
+            Btn_Delete.BackColor = Color.Crimson;
+            Btn_Delete.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            Btn_Delete.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            Btn_Delete.IconColor = Color.White;
+            Btn_Delete.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Btn_Delete.IconSize = 32;
+            Btn_Delete.ImageAlign = ContentAlignment.MiddleLeft;
+            Btn_Delete.Location = new Point(22, 67);
+            Btn_Delete.Name = "Btn_Delete";
+            Btn_Delete.Size = new Size(146, 58);
+            Btn_Delete.TabIndex = 3;
+            Btn_Delete.Text = "Delete";
+            Btn_Delete.TextImageRelation = TextImageRelation.ImageBeforeText;
+            Btn_Delete.UseVisualStyleBackColor = false;
+            Btn_Delete.Click += Btn_Delete_Click;
             // 
-            // Btn_Save
+            // Btn_AddNew
             // 
-            Btn_Save.Anchor = AnchorStyles.None;
-            Btn_Save.BackColor = Color.Green;
-            Btn_Save.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            Btn_Save.ForeColor = SystemColors.ButtonHighlight;
-            Btn_Save.Location = new Point(224, 401);
-            Btn_Save.Name = "Btn_Save";
-            Btn_Save.Size = new Size(109, 45);
-            Btn_Save.TabIndex = 18;
-            Btn_Save.Text = "Save";
-            Btn_Save.UseVisualStyleBackColor = false;
-            Btn_Save.Click += Btn_Save_Click;
+            Btn_AddNew.Anchor = AnchorStyles.Top;
+            Btn_AddNew.BackColor = Color.SpringGreen;
+            Btn_AddNew.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            Btn_AddNew.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            Btn_AddNew.IconColor = Color.White;
+            Btn_AddNew.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            Btn_AddNew.IconSize = 32;
+            Btn_AddNew.ImageAlign = ContentAlignment.MiddleLeft;
+            Btn_AddNew.Location = new Point(22, 3);
+            Btn_AddNew.Name = "Btn_AddNew";
+            Btn_AddNew.Size = new Size(143, 58);
+            Btn_AddNew.TabIndex = 0;
+            Btn_AddNew.Text = "New";
+            Btn_AddNew.TextImageRelation = TextImageRelation.ImageBeforeText;
+            Btn_AddNew.UseVisualStyleBackColor = false;
+            Btn_AddNew.Click += Btn_AddNew_Click;
             // 
-            // label1
+            // DGV_Exams
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Cairo", 13.7999992F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(223, 71);
-            label1.Name = "label1";
-            label1.Size = new Size(184, 43);
-            label1.TabIndex = 14;
-            label1.Text = "#MCQ Questions";
-            // 
-            // MCQNum
-            // 
-            MCQNum.Anchor = AnchorStyles.None;
-            MCQNum.Font = new Font("Cairo", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            MCQNum.Location = new Point(224, 117);
-            MCQNum.Name = "MCQNum";
-            MCQNum.Size = new Size(288, 45);
-            MCQNum.TabIndex = 21;
-            // 
-            // TFNum
-            // 
-            TFNum.Anchor = AnchorStyles.None;
-            TFNum.Font = new Font("Cairo", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            TFNum.Location = new Point(223, 211);
-            TFNum.Name = "TFNum";
-            TFNum.Size = new Size(288, 45);
-            TFNum.TabIndex = 22;
-            // 
-            // CB_Course
-            // 
-            CB_Course.Anchor = AnchorStyles.None;
-            CB_Course.Font = new Font("Cairo", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            CB_Course.FormattingEnabled = true;
-            CB_Course.Location = new Point(224, 305);
-            CB_Course.Name = "CB_Course";
-            CB_Course.Size = new Size(289, 45);
-            CB_Course.TabIndex = 23;
-            CB_Course.SelectedIndexChanged += CB_Course_SelectedIndexChanged;
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.None;
-            label4.AutoSize = true;
-            label4.Font = new Font("Cairo", 13.7999992F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(223, 259);
-            label4.Name = "label4";
-            label4.Size = new Size(87, 43);
-            label4.TabIndex = 24;
-            label4.Text = "Course";
+            DGV_Exams.AllowUserToAddRows = false;
+            DGV_Exams.AllowUserToDeleteRows = false;
+            DGV_Exams.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DGV_Exams.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGV_Exams.Location = new Point(1, 0);
+            DGV_Exams.MultiSelect = false;
+            DGV_Exams.Name = "DGV_Exams";
+            DGV_Exams.ReadOnly = true;
+            DGV_Exams.RowHeadersWidth = 51;
+            DGV_Exams.RowTemplate.Height = 29;
+            DGV_Exams.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DGV_Exams.Size = new Size(618, 450);
+            DGV_Exams.TabIndex = 4;
             // 
             // ExamForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(744, 531);
-            Controls.Add(label4);
-            Controls.Add(CB_Course);
-            Controls.Add(TFNum);
-            Controls.Add(MCQNum);
-            Controls.Add(label3);
-            Controls.Add(Btn_Cancel);
-            Controls.Add(Btn_Save);
-            Controls.Add(label1);
-            DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.None;
+            ClientSize = new Size(800, 450);
+            Controls.Add(panel4);
+            Controls.Add(DGV_Exams);
             Name = "ExamForm";
-            StartPosition = FormStartPosition.CenterParent;
             Text = "ExamForm";
-            ((System.ComponentModel.ISupportInitialize)MCQNum).EndInit();
-            ((System.ComponentModel.ISupportInitialize)TFNum).EndInit();
+            panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DGV_Exams).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label3;
-        private Button Btn_Cancel;
-        private Button Btn_Save;
-        private Label label1;
-        private NumericUpDown MCQNum;
-        private NumericUpDown TFNum;
-        private ComboBox CB_Course;
-        private Label label4;
+        private Panel panel4;
+        private FontAwesome.Sharp.IconButton Btn_Delete;
+        private FontAwesome.Sharp.IconButton Btn_AddNew;
+        private DataGridView DGV_Exams;
     }
 }

@@ -22,6 +22,8 @@ namespace ExamSystem
         {
             InitializeComponent();
             CB_UserDept.DataSource = Db.Departments.ToList();
+            CB_UserDept.DisplayMember = "DepartmentName";
+            CB_UserDept.ValueMember = "DepartmentId";
             Cb_UserRole.Items.Add("Ins");
             Cb_UserRole.Items.Add("Std");
             Cb_UserRole.SelectedIndex = 0;

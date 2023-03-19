@@ -17,7 +17,7 @@ public partial class Question
 
     public int? CourseId { get; set; }
 
-    public virtual ICollection<Answer> Answers { get; } = new List<Answer>();
+    public virtual ICollection<Answer> Answers { get; set; } = new List<Answer>();
 
     public virtual Course? Course { get; set; }
 

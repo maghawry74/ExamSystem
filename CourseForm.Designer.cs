@@ -51,7 +51,7 @@
             // 
             // Btn_Delete
             // 
-            Btn_Delete.Anchor = AnchorStyles.None;
+            Btn_Delete.Anchor = AnchorStyles.Top;
             Btn_Delete.BackColor = Color.Crimson;
             Btn_Delete.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Btn_Delete.IconChar = FontAwesome.Sharp.IconChar.Trash;
@@ -70,7 +70,7 @@
             // 
             // Btn_Edit
             // 
-            Btn_Edit.Anchor = AnchorStyles.None;
+            Btn_Edit.Anchor = AnchorStyles.Top;
             Btn_Edit.BackColor = Color.LightSkyBlue;
             Btn_Edit.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Btn_Edit.IconChar = FontAwesome.Sharp.IconChar.SquarePen;
@@ -89,7 +89,7 @@
             // 
             // Btn_AddNew
             // 
-            Btn_AddNew.Anchor = AnchorStyles.None;
+            Btn_AddNew.Anchor = AnchorStyles.Top;
             Btn_AddNew.BackColor = Color.SpringGreen;
             Btn_AddNew.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Btn_AddNew.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;

@@ -50,6 +50,10 @@ namespace ExamSystem
         {
             LoadChildForm(new CourseForm(), sender);
         }
+        private void Btn_Reports_Click(object sender, EventArgs e)
+        {
+            LoadChildForm(new ReportsForm(), sender);
+        }
         void LoadChildForm(Form childForm, object sender)
         {
             if (ActiveForm != null)
@@ -64,9 +68,6 @@ namespace ExamSystem
             childForm.BringToFront();
             childForm.Show();
             HeaderLabel.Text = childForm.Name;
-
         }
-
-
     }
 }

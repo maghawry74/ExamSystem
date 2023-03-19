@@ -32,13 +32,10 @@
             Lbl_Question = new Label();
             Btn_Next = new Button();
             ChoicesGroup = new GroupBox();
-            Answer_4 = new RadioButton();
-            Answer_3 = new RadioButton();
-            Answer_2 = new RadioButton();
-            Answer_1 = new RadioButton();
             Lbl_StudentName = new Label();
             Btn_Submit = new Button();
-            ChoicesGroup.SuspendLayout();
+            Btn_Prev = new Button();
+            Lbl_Counter = new Label();
             SuspendLayout();
             // 
             // Lbl_Exam
@@ -54,6 +51,7 @@
             // 
             // Lbl_Question
             // 
+            Lbl_Question.AutoEllipsis = true;
             Lbl_Question.AutoSize = true;
             Lbl_Question.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             Lbl_Question.Location = new Point(59, 97);
@@ -79,10 +77,6 @@
             // ChoicesGroup
             // 
             ChoicesGroup.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ChoicesGroup.Controls.Add(Answer_4);
-            ChoicesGroup.Controls.Add(Answer_3);
-            ChoicesGroup.Controls.Add(Answer_2);
-            ChoicesGroup.Controls.Add(Answer_1);
             ChoicesGroup.Font = new Font("Cairo SemiBold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             ChoicesGroup.Location = new Point(59, 145);
             ChoicesGroup.Name = "ChoicesGroup";
@@ -90,50 +84,6 @@
             ChoicesGroup.TabIndex = 7;
             ChoicesGroup.TabStop = false;
             ChoicesGroup.Text = "Choices";
-            // 
-            // Answer_4
-            // 
-            Answer_4.AutoSize = true;
-            Answer_4.Location = new Point(28, 191);
-            Answer_4.Name = "Answer_4";
-            Answer_4.Size = new Size(152, 41);
-            Answer_4.TabIndex = 3;
-            Answer_4.TabStop = true;
-            Answer_4.Text = "radioButton4";
-            Answer_4.UseVisualStyleBackColor = true;
-            // 
-            // Answer_3
-            // 
-            Answer_3.AutoSize = true;
-            Answer_3.Location = new Point(28, 146);
-            Answer_3.Name = "Answer_3";
-            Answer_3.Size = new Size(152, 41);
-            Answer_3.TabIndex = 2;
-            Answer_3.TabStop = true;
-            Answer_3.Text = "radioButton3";
-            Answer_3.UseVisualStyleBackColor = true;
-            // 
-            // Answer_2
-            // 
-            Answer_2.AutoSize = true;
-            Answer_2.Location = new Point(28, 101);
-            Answer_2.Name = "Answer_2";
-            Answer_2.Size = new Size(152, 41);
-            Answer_2.TabIndex = 1;
-            Answer_2.TabStop = true;
-            Answer_2.Text = "radioButton2";
-            Answer_2.UseVisualStyleBackColor = true;
-            // 
-            // Answer_1
-            // 
-            Answer_1.AutoSize = true;
-            Answer_1.Location = new Point(28, 50);
-            Answer_1.Name = "Answer_1";
-            Answer_1.Size = new Size(152, 41);
-            Answer_1.TabIndex = 0;
-            Answer_1.TabStop = true;
-            Answer_1.Text = "radioButton1";
-            Answer_1.UseVisualStyleBackColor = true;
             // 
             // Lbl_StudentName
             // 
@@ -160,12 +110,37 @@
             Btn_Submit.Visible = false;
             Btn_Submit.Click += Btn_Submit_Click;
             // 
+            // Btn_Prev
+            // 
+            Btn_Prev.BackColor = Color.Coral;
+            Btn_Prev.Font = new Font("Cairo SemiBold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            Btn_Prev.ForeColor = SystemColors.ButtonHighlight;
+            Btn_Prev.Location = new Point(59, 411);
+            Btn_Prev.Name = "Btn_Prev";
+            Btn_Prev.Size = new Size(119, 49);
+            Btn_Prev.TabIndex = 10;
+            Btn_Prev.Text = "Previous";
+            Btn_Prev.UseVisualStyleBackColor = false;
+            Btn_Prev.Click += Btn_Prev_Click;
+            // 
+            // Lbl_Counter
+            // 
+            Lbl_Counter.AutoSize = true;
+            Lbl_Counter.Font = new Font("Cairo SemiBold", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            Lbl_Counter.Location = new Point(463, 67);
+            Lbl_Counter.Name = "Lbl_Counter";
+            Lbl_Counter.Size = new Size(96, 53);
+            Lbl_Counter.TabIndex = 8;
+            Lbl_Counter.Text = "label1";
+            // 
             // StudentExamForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 472);
+            Controls.Add(Btn_Prev);
             Controls.Add(Btn_Submit);
+            Controls.Add(Lbl_Counter);
             Controls.Add(Lbl_StudentName);
             Controls.Add(ChoicesGroup);
             Controls.Add(Btn_Next);
@@ -174,8 +149,6 @@
             Name = "StudentExamForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "StudentExamForm";
-            ChoicesGroup.ResumeLayout(false);
-            ChoicesGroup.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -186,11 +159,9 @@
         private Label Lbl_Question;
         private Button Btn_Next;
         private GroupBox ChoicesGroup;
-        private RadioButton Answer_4;
-        private RadioButton Answer_3;
-        private RadioButton Answer_2;
-        private RadioButton Answer_1;
         private Label Lbl_StudentName;
         private Button Btn_Submit;
+        private Button Btn_Prev;
+        private Label Lbl_Counter;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ExamSystem.Models;
+
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,76 +11,90 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ExamSystem
+namespace ExamSystem;
+
+
+public partial class StudentExamForm : Form
 {
-
-    public partial class StudentExamForm : Form
+    Exam exam;
+    User Student;
+    List<Question> questions;
+    Dictionary<int, string> StudentAnswers;
+    int QuestionCounter = 0;
+    ExamSystemContext Db = new();
+    public StudentExamForm(Exam exam, User Student)
     {
-        Exam exam;
-        User Student;
-        List<Question> questions;
-        int QuestionCounter = 0;
-        ExamSystemContext Db = new();
-        public StudentExamForm(Exam exam, User Student)
-        {
-            this.exam = exam;
-            this.Student = Student;
-            InitializeComponent();
-            this.Lbl_Exam.Text = $"{exam?.Course?.CourseName} Exam";
-            Lbl_StudentName.Text = $"{Student.FirstName} {Student.LastName}";
-            questions = exam.Questions.ToList();
-            DisplayQuestionWithAnswers();
+        this.exam = exam;
+        this.Student = Student;
+        InitializeComponent();
+        this.Lbl_Exam.Text = $"{exam?.Course?.CourseName} Exam";
+        Lbl_StudentName.Text = $"{Student.FirstName} {Student.LastName}";
+        questions = exam.Questions.ToList();
+        StudentAnswers = new Dictionary<int, string>(questions.Count);
+        DisplayQuestionWithAnswers();
+    }
+    private void Btn_Next_Click(object sender, EventArgs e)
+    {
+        getAnswers();
+        QuestionCounter++;
+        DisplayQuestionWithAnswers();
+    }
+    private void Btn_Prev_Click(object sender, EventArgs e)
+    {
+        getAnswers();
+        QuestionCounter--;
+        DisplayQuestionWithAnswers();
+    }
+    private void Btn_Submit_Click(object sender, EventArgs e)
+    {
+        getAnswers();
+        var test = StudentAnswers;
+        int ExamId = exam.ExamId;
+        string StudentId = Student.Ssn;
+        foreach(var item in StudentAnswers) {
+        Db.Database.ExecuteSql($"ExamAnswer {ExamId},{StudentId},{item.Key},{item.Value}");
         }
-        private void Btn_Next_Click(object sender, EventArgs e)
+        Db.Database.ExecuteSql($"ExamCorection {Student.Ssn},{exam.ExamId}");
+        MessageBox.Show("Exam Has Been Submitted Successfully");
+        this.Close();
+    }
+    private void DisplayQuestionWithAnswers()
+    {
+        Btn_Prev.Visible = QuestionCounter > 0;
+        Btn_Next.Visible = QuestionCounter < (questions.Count - 1);
+        Btn_Submit.Visible = !(QuestionCounter < (questions.Count - 1));
+        if (QuestionCounter < questions.Count && QuestionCounter >= 0)
         {
-            int ExamId = exam.ExamId;
-            string StudentId = Student.Ssn;
-            int QuestionId = questions[QuestionCounter].QuestionId;
-            string QuestionAnswer = "";
-            foreach (RadioButton ite in ChoicesGroup.Controls)
+            string? checkedAnswer = StudentAnswers.GetValueOrDefault(questions[QuestionCounter].QuestionId);
+            Lbl_Counter.Text=QuestionCounter.ToString();
+            ChoicesGroup.Controls.Clear();
+            Lbl_Question.Text = $"{QuestionCounter + 1}- {questions[QuestionCounter].Body}";
+            for (int i = 0; i < questions[QuestionCounter].Answers.Count; i++)
             {
-                if (ite.Checked)
-                {
-                    QuestionAnswer = ite.Text;
-                    ite.Checked = false;
-                }
-            }
-
-            Db.Database.ExecuteSql($"ExamAnswer {ExamId},{StudentId},{QuestionId},{QuestionAnswer}");
-            QuestionCounter++;
-            DisplayQuestionWithAnswers();
-        }
-        private void DisplayQuestionWithAnswers()
-        {
-            if (QuestionCounter < questions.Count && QuestionCounter >= 0)
-            {
-
-                Lbl_Question.Text = questions[QuestionCounter].Body;
-                if (questions[QuestionCounter].Type == "MCQ")
-                {
-                    Answer_1.Text = questions[QuestionCounter].Answers.ToList()[0].QuestionAnswer;
-                    Answer_2.Text = questions[QuestionCounter].Answers.ToList()[1].QuestionAnswer;
-                    Answer_3.Text = questions[QuestionCounter].Answers.ToList()[2].QuestionAnswer;
-                    Answer_4.Text = questions[QuestionCounter].Answers.ToList()[3].QuestionAnswer;
-                }
-                else
-                {
-                    Answer_1.Text = questions[QuestionCounter].Answers.ToList()[0].QuestionAnswer;
-                    Answer_2.Text = questions[QuestionCounter].Answers.ToList()[1].QuestionAnswer;
-                    Answer_3.Visible = false;
-                    Answer_4.Visible = false;
-                }
-            }
-            else
-            {
-                Btn_Next.Visible = false;
-                Btn_Submit.Visible = true;
+                RadioButton radioButton = new RadioButton();
+                radioButton.Text = questions[QuestionCounter].Answers.ToList()[i].QuestionAnswer;
+                radioButton.Font = new Font("Cairo", 10);
+                radioButton.Height = 45;
+                radioButton.Width = 200;
+                radioButton.Top = 50 + i * 50;
+                radioButton.Left = 20;
+                radioButton.Checked= (questions[QuestionCounter].Answers.ToList()[i].QuestionAnswer)==checkedAnswer;
+                ChoicesGroup.Controls.Add(radioButton);
             }
         }
-
-        private void Btn_Submit_Click(object sender, EventArgs e)
+    }
+    void getAnswers()
+    {
+        int QuestionId = questions[QuestionCounter].QuestionId;
+        string QuestionAnswer = "";
+        foreach (RadioButton ite in ChoicesGroup.Controls)
         {
-            Db.Database.ExecuteSql($"ExamCorection {Student.Ssn},{exam.ExamId}");
+            if (ite.Checked)
+            {
+                QuestionAnswer = ite.Text;
+                ite.Checked = false;
+            }
         }
+        StudentAnswers[QuestionId]= QuestionAnswer;
     }
 }

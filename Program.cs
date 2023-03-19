@@ -18,7 +18,11 @@ namespace ExamSystem
             var Std = context.Users.FirstOrDefault(ins => ins.Ssn == "29704071701073");
 
             //Application.Run(new LoginForm());
-            Application.Run(new StudentWelcome(Std));
+            Application.Run(new Admin());
+
+            //Application.Run(new ReportsForm());
+            //Application.Run(new InstructorForm(ins));
+
         }
     }
 }

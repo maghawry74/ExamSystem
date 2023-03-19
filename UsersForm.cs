@@ -32,7 +32,7 @@ namespace ExamSystem
 
         private void Btn_Edit_Click(object sender, EventArgs e)
         {
-            string Ssn = DGV_Users?.SelectedRows[0]?.Cells[0]?.Value?.ToString();
+            string? Ssn = DGV_Users?.SelectedRows[0]?.Cells[0]?.Value?.ToString();
             UserDetails userDetails = new UserDetails(Ssn);
             userDetails.ShowDialog();
             LoadAllUsers();
@@ -45,7 +45,7 @@ namespace ExamSystem
             if (MessageBox.Show($"Are You Sure To Delete USer {UserName}", "Alert", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 var DeletedUser = Db.Users.FirstOrDefault(user => user.Ssn == UserId);
-                Db.Users.Remove(DeletedUser);
+                Db.Users.Remove(DeletedUser!);
                 Db.SaveChanges();
                 LoadAllUsers();
             }
