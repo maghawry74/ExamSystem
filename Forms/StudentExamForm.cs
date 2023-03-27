@@ -48,11 +48,11 @@ public partial class StudentExamForm : Form
     private void Btn_Submit_Click(object sender, EventArgs e)
     {
         getAnswers();
-        var test = StudentAnswers;
         int ExamId = exam.ExamId;
         string StudentId = Student.Ssn;
-        foreach(var item in StudentAnswers) {
-        Db.Database.ExecuteSql($"ExamAnswer {ExamId},{StudentId},{item.Key},{item.Value}");
+        foreach (var item in StudentAnswers)
+        {
+            Db.Database.ExecuteSql($"ExamAnswer {ExamId},{StudentId},{item.Key},{item.Value}");
         }
         Db.Database.ExecuteSql($"ExamCorection {Student.Ssn},{exam.ExamId}");
         MessageBox.Show("Exam Has Been Submitted Successfully");
@@ -66,7 +66,6 @@ public partial class StudentExamForm : Form
         if (QuestionCounter < questions.Count && QuestionCounter >= 0)
         {
             string? checkedAnswer = StudentAnswers.GetValueOrDefault(questions[QuestionCounter].QuestionId);
-            Lbl_Counter.Text=QuestionCounter.ToString();
             ChoicesGroup.Controls.Clear();
             Lbl_Question.Text = $"{QuestionCounter + 1}- {questions[QuestionCounter].Body}";
             for (int i = 0; i < questions[QuestionCounter].Answers.Count; i++)
@@ -78,7 +77,7 @@ public partial class StudentExamForm : Form
                 radioButton.Width = 200;
                 radioButton.Top = 50 + i * 50;
                 radioButton.Left = 20;
-                radioButton.Checked= (questions[QuestionCounter].Answers.ToList()[i].QuestionAnswer)==checkedAnswer;
+                radioButton.Checked = (questions[QuestionCounter].Answers.ToList()[i].QuestionAnswer) == checkedAnswer;
                 ChoicesGroup.Controls.Add(radioButton);
             }
         }
@@ -95,6 +94,6 @@ public partial class StudentExamForm : Form
                 ite.Checked = false;
             }
         }
-        StudentAnswers[QuestionId]= QuestionAnswer;
+        StudentAnswers[QuestionId] = QuestionAnswer;
     }
 }

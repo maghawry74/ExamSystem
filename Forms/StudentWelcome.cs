@@ -29,7 +29,7 @@ namespace ExamSystem
             {
                 using (ExamSystemContext Db = new ExamSystemContext())
                 {
-                    Exam exam = Db.Exams.Include(Ex=>Ex.Course).Include(Ex=>Ex.Questions).ThenInclude(Q=>Q.Answers).FirstOrDefault(Ex=>Ex.ExamId==ExamId);
+                    Exam exam = Db.Exams.Include(Ex => Ex.Course).Include(Ex => Ex.Questions).ThenInclude(Q => Q.Answers).FirstOrDefault(Ex => Ex.ExamId == ExamId);
                     if (exam == null)
                     {
                         MessageBox.Show("Exam Number isn't Found", "Alert", MessageBoxButtons.OK);
@@ -37,7 +37,7 @@ namespace ExamSystem
                     else
                     {
                         this.Hide();
-                        new StudentExamForm(exam,student).ShowDialog();
+                        new StudentExamForm(exam, student).ShowDialog();
                         this.Close();
                     }
                 }

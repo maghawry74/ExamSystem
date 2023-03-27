@@ -35,7 +35,6 @@
             Lbl_StudentName = new Label();
             Btn_Submit = new Button();
             Btn_Prev = new Button();
-            Lbl_Counter = new Label();
             SuspendLayout();
             // 
             // Lbl_Exam
@@ -123,16 +122,6 @@
             Btn_Prev.UseVisualStyleBackColor = false;
             Btn_Prev.Click += Btn_Prev_Click;
             // 
-            // Lbl_Counter
-            // 
-            Lbl_Counter.AutoSize = true;
-            Lbl_Counter.Font = new Font("Cairo SemiBold", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            Lbl_Counter.Location = new Point(463, 67);
-            Lbl_Counter.Name = "Lbl_Counter";
-            Lbl_Counter.Size = new Size(96, 53);
-            Lbl_Counter.TabIndex = 8;
-            Lbl_Counter.Text = "label1";
-            // 
             // StudentExamForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -140,7 +129,6 @@
             ClientSize = new Size(1060, 472);
             Controls.Add(Btn_Prev);
             Controls.Add(Btn_Submit);
-            Controls.Add(Lbl_Counter);
             Controls.Add(Lbl_StudentName);
             Controls.Add(ChoicesGroup);
             Controls.Add(Btn_Next);
@@ -162,6 +150,5 @@
         private Label Lbl_StudentName;
         private Button Btn_Submit;
         private Button Btn_Prev;
-        private Label Lbl_Counter;
     }
 }

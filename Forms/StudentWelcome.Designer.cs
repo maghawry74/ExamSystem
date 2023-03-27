@@ -40,7 +40,7 @@
             Lbl_Welcome.AutoSize = true;
             Lbl_Welcome.Font = new Font("Cairo", 13.7999992F, FontStyle.Bold, GraphicsUnit.Point);
             Lbl_Welcome.ForeColor = SystemColors.ControlLightLight;
-            Lbl_Welcome.Location = new Point(163, 85);
+            Lbl_Welcome.Location = new Point(232, 126);
             Lbl_Welcome.Name = "Lbl_Welcome";
             Lbl_Welcome.Size = new Size(110, 43);
             Lbl_Welcome.TabIndex = 0;
@@ -50,10 +50,10 @@
             // 
             Txt_ExamId.Anchor = AnchorStyles.None;
             Txt_ExamId.Font = new Font("Cairo", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            Txt_ExamId.Location = new Point(119, 131);
+            Txt_ExamId.Location = new Point(147, 172);
             Txt_ExamId.Name = "Txt_ExamId";
             Txt_ExamId.PlaceholderText = "Enter Exam Number";
-            Txt_ExamId.Size = new Size(322, 45);
+            Txt_ExamId.Size = new Size(390, 45);
             Txt_ExamId.TabIndex = 1;
             // 
             // iconButton1
@@ -67,7 +67,7 @@
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.IconSize = 32;
             iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(195, 194);
+            iconButton1.Location = new Point(264, 235);
             iconButton1.Name = "iconButton1";
             iconButton1.Size = new Size(139, 51);
             iconButton1.TabIndex = 2;
@@ -87,7 +87,7 @@
             Btn_Exit.IconColor = Color.FromArgb(33, 121, 184);
             Btn_Exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             Btn_Exit.IconSize = 32;
-            Btn_Exit.Location = new Point(515, 0);
+            Btn_Exit.Location = new Point(642, 12);
             Btn_Exit.Name = "Btn_Exit";
             Btn_Exit.Size = new Size(41, 32);
             Btn_Exit.TabIndex = 5;
@@ -99,7 +99,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(51, 52, 78);
-            ClientSize = new Size(556, 315);
+            ClientSize = new Size(695, 396);
             Controls.Add(Btn_Exit);
             Controls.Add(iconButton1);
             Controls.Add(Txt_ExamId);
